@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'co.aospa.hub'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "co.aospa.hub"
+        minSdk 33
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lint {
+        ignore 'ProtectedPermissions', 'ExtraTranslation', 'ImpliedQuantity', 'MissingQuantity', 'MissingTranslation'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            outputFileName = "Updates.apk"
+        }
+    }
+}
+
+
+dependencies {
+    compileOnly fileTree(dir: 'system_libs/', include: ['*.jar'])
+
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.preference:preference:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
